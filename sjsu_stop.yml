@@ -1,0 +1,14 @@
+---
+- name: sjsu welcome
+  hosts: all
+  remote_user: osboxes
+  become: true
+  tasks:
+    - name: changed
+      yum:
+          name: httpd
+          state: latest
+    - name: stop httpd
+      service:
+              name: httpd
+              state: stopped

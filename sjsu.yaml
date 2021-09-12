@@ -1,0 +1,18 @@
+---
+- name: sjsu welcome
+  hosts: all
+  remote_user: osboxes
+  become: true
+  tasks:
+    - name: install httpd
+      yum:
+          name: httpd
+          state: latest
+    - name: run httpd
+      service:
+              name: httpd
+              state: started
+    - name: create content
+      copy:
+          content: "Hello World from SJSU"
+          dest: /var/www/html/index.html
